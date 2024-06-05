@@ -29,7 +29,10 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
+app.use("/",(req,res)=>{
+  res.status(200).json({message:"Welcome to the server"
+  })
+})
 // tmdb
 app.use("/api", tmdbRoutes);
 
