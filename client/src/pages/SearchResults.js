@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import ListingScreen from "../loaders/screens/ListingScreen";
 
 const SearchResults = () => {
-  const { isSearch, page } = useSelector((state) => state.layout);
+  const { page } = useSelector((state) => state.layout);
   const [searchParam] = useSearchParams();
   const [waiting, setWaiting] = useState(true);
 

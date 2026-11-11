@@ -7,14 +7,11 @@ const Navbar = () => {
   const searchBarRef = useRef();
   const searchInputRef = useRef();
   const [isClicked, setIsClicked] = useState(false);
-  const [showSearchIcon, setShowSearchIcon] = useState(false);
   const [isInputOpen, setIsInputOpen] = useState(false);
-  const [input, setInput] = useState("");
   const [lastPage, setLastPage] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParam, setSearchParam] = useSearchParams();
-  const [userName, setUserName] = useState("");
 
   const user = useSelector((state) => state.user.user);
   //just add search icon at home not at login
@@ -25,6 +22,7 @@ const Navbar = () => {
     }
     //extra
     setIsClicked(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on purpose only when this value changes
   }, [location.pathname]);
   console.log('her is path',location.pathname)
 
@@ -49,6 +47,7 @@ const Navbar = () => {
     if (!isInputOpen) {
       navigate(lastPage);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on purpose only when this value changes
   }, [isInputOpen]);
 
   useEffect(() => {
@@ -59,6 +58,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- the scroll listener is added once, on mount
   }, []);
 
   const handleScroll = () => {
@@ -97,7 +97,7 @@ const Navbar = () => {
       !searchBarRef.current.contains(e.target) &&
       e.target.id !== "searchButton" &&
       e.target.id !== "searchIcon" &&
-      searchInputRef.current.value == ""
+      searchInputRef.current.value === ""
     ) {
       setIsInputOpen(false);
     }
